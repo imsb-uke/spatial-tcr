@@ -1,6 +1,6 @@
 # Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes
 
-This repository contains code and analysis notebooks for the manuscript **Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes**. The project combines spatial transcriptomics (Xenium) with TCR sequencing to understand the distribution and clonal relationships of T cells within kidney tissue.
+This repository contains code and analysis notebooks for the manuscript **Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes**.
 
 ## Installation (Conda + Poetry)
 Prerequisites: Conda (Mambaforge/Miniconda/Anaconda) and Git installed.
