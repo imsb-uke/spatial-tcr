@@ -88,4 +88,3 @@ def test_build_spatialtcr_parser_defaults() -> None:
     args = build_spatialtcr_parser().parse_args([])
 
     assert args.kernel == "python3"
-    assert args.yes is False

@@ -13,12 +13,6 @@ def build_parser() -> argparse.ArgumentParser:
         description="Run Xenium and TCR-seq notebook pipelines sequentially."
     )
     parser.add_argument(
-        "-y",
-        "--yes",
-        action="store_true",
-        help="Run both pipelines without asking for confirmation.",
-    )
-    parser.add_argument(
         "--kernel",
         default="python3",
         help="Jupyter kernel name for papermill in both pipelines (default: python3).",
@@ -30,16 +24,12 @@ def main() -> int:
     args = build_parser().parse_args()
 
     xenium_argv: list[str] = ["--kernel", args.kernel]
-    if args.yes:
-        xenium_argv.append("--yes")
 
     xenium_status = run_xenium_notebooks(argv=xenium_argv)
     if xenium_status != 0:
         return xenium_status
 
     tcr_seq_argv: list[str] = ["--kernel", args.kernel]
-    if args.yes:
-        tcr_seq_argv.append("--yes")
 
     return run_tcr_seq_notebooks(argv=tcr_seq_argv)
 

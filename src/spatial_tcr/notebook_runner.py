@@ -21,12 +21,6 @@ def build_parser(
 ) -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument(
-        "-y",
-        "--yes",
-        action="store_true",
-        help="Run without asking for confirmation.",
-    )
-    parser.add_argument(
         "--notebook-dir",
         type=Path,
         default=default_notebook_dir,
@@ -175,11 +169,6 @@ def prompt_start_index(notebooks: list[Path]) -> int:
     raise ValueError(f"Start index must be between 1 and {len(notebooks)}.")
 
 
-def confirm_run() -> bool:
-    response = input("Proceed with notebook execution? [y/N]: ").strip().lower()
-    return response in {"y", "yes"}
-
-
 def main(
     *,
     description: str = "Run Xenium TCR analysis notebooks sequentially with papermill.",
@@ -224,10 +213,6 @@ def main(
         return 1
 
     notebooks_to_run = notebooks[start_index:]
-
-    if not args.yes and not confirm_run():
-        print("Aborted.", flush=True)
-        return 1
 
     for notebook in notebooks_to_run:
         run_notebook(notebook, notebook_dir, output_dir, args.kernel)
