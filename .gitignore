@@ -1,3 +1,26 @@
-.ipynb_checkpoints
+# Generated data and outputs
 data/**
+!data/**/
+!data/**/.gitkeep
+!data/xenium/
+data/xenium/*
+!data/xenium/**/
+!data/xenium/tcell_subtype.csv
+!data/xenium/umap_coordinates.csv
+!data/xenium/npca_clusters.csv
+figures/**
+results/**
+
+# Python caches
 __pycache__
+.ruff_cache/**
+
+# Notebook artifacts
+.ipynb_checkpoints
+
+# Local tooling
+.codex
+
+
+cedrics-code
+.papermill

@@ -2,34 +2,27 @@
 
 This repository contains code and analysis notebooks for the manuscript **Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes**.
 
-## Installation (Conda + Poetry)
-Prerequisites: Conda (Mambaforge/Miniconda/Anaconda) and Git installed.
+## Installation
 
-1) Create and activate a Python 3.10 environment
+Prerequisites: Git installed.
 
-```bash
-conda create -n spatialtcr python=3.10 -y
-conda activate spatialtcr
-```
-
-2) Install Poetry inside the active Conda environment (if not present)
+### 1. Install `uv`
 
 ```bash
-conda install -c conda-forge poetry -y
-# Make Poetry use the currently active Conda Python (recommended)
-poetry config virtualenvs.prefer-active-python true
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-3) Download code and install dependencies
+### 2. Download the code and install dependencies
 
 ```bash
 git clone https://github.com/imsb-uke/spatial-tcr.git
 cd spatial-tcr
-poetry install
+uv sync
 ```
 
 ## Usage
 
 The `notebooks` folder contains separate analysis folders:
+
 - The `XeniumTCR-analysis` folder contains the notebooks for the spatial analysis of the Xenium TCR data.
 - The `TCRseq-analysis` folder contains code to analyze the single-cell TCRseq data.
