@@ -1,6 +1,6 @@
 # Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes
 
-This repository contains code and analysis notebooks for the manuscript **Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes**.
+This repository contains code and analysis notebooks for the manuscript **Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes**. The preprint can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.08.29.673064v1).
 
 ## Installation
 
