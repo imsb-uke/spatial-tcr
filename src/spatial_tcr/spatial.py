@@ -21,11 +21,16 @@ def annotate_ccs(adata, g=None, return_ccs=False):
     if g is None:
         g = to_networkx(adata)
     ccs = list(nx.connected_components(g))
-    adata.obs["cc"] = "NA"
+    # Pre-allocate a numpy array instead of initializing with 'NA'
+    cc_labels = np.full(len(adata.obs), -1, dtype=int)
+
+    # Vectorized assignment instead of loop
     for i, cc in enumerate(ccs):
-        nodes = list(cc)
-        indices = adata.obs.index[nodes]
-        adata.obs.loc[indices, "cc"] = str(i)
+        cc_labels[list(cc)] = i
+
+    # Single assignment to dataframe
+    adata.obs["cc"] = cc_labels.astype(str)
+    adata.obs.loc[cc_labels == -1, "cc"] = "NA"
     if return_ccs:
         return ccs
 
@@ -33,6 +38,12 @@ def annotate_ccs(adata, g=None, return_ccs=False):
 def merge_labels(adata, labels, label_key="cc"):
     mask = adata.obs[label_key].isin(labels)
     adata.obs.loc[mask, label_key] = labels[0]
+
+
+def filter_ccs(adata, cc_key="cc", min_cells=10):
+    mask = adata.obs[cc_key].value_counts() >= min_cells
+    retained_ccs = mask[mask].index.tolist()
+    return adata[adata.obs[cc_key].isin(retained_ccs)].copy()
 
 
 def annotate_border_band(
@@ -235,3 +246,27 @@ def fill_annotations(
         unannotated = current.isna() | (current == "NA")
         if np.any(unannotated):
             adata.obs.loc[contained_names[unannotated], out_key] = element
+
+
+def spatial_sample_split(
+    adata, sample_key, displacement=1000, out_key="spatial_split", in_key="spatial"
+):
+    sample_widths = []
+    for cc in adata.obs[sample_key].unique():
+        mask = adata.obs[sample_key] == cc
+        coords_orig = adata[mask].obsm[in_key]
+        x_min = coords_orig[:, 0].min()
+        x_max = coords_orig[:, 0].max()
+        width = x_max - x_min
+        sample_widths.append(width)
+    max_sample_width = max(sample_widths)
+
+    adata.obsm[out_key] = adata.obsm[in_key].copy()
+    interval = max_sample_width + displacement
+    for i, cc in enumerate(adata.obs[sample_key].unique()):
+        mask = adata.obs[sample_key] == cc
+        coords_orig = adata[mask].obsm[in_key]
+        x_min, y_min = coords_orig.min(axis=0)
+        coords = coords_orig - np.array([x_min, y_min])[None, :]
+        coords[:, 0] += i * interval
+        adata.obsm[out_key][mask.values] = coords

@@ -63,3 +63,42 @@ def colocalization_local_swap_test(
         "p_value": float(p),
         "null": null,
     }
+
+
+def count_test(pos_1, neg_1, pos_2, neg_2, test="auto"):
+    table = np.array([[pos_1, neg_1], [pos_2, neg_2]])
+    if test == "auto":
+        if np.sum(table) < 1000:
+            test = "fisher"
+        else:
+            test = "chisquare"
+    if test == "chisquare":
+        from scipy.stats import chi2_contingency
+
+        p_value = chi2_contingency(table)[1]
+    elif test == "fisher":
+        from scipy.stats import fisher_exact
+
+        p_value = fisher_exact(table)[1]
+    return p_value
+
+
+def wilcoxon_significance(df, target_ct, group_key="group"):
+    from scipy.stats import mannwhitneyu
+
+    assert target_ct in df.columns, f"{target_ct} not in {df.columns}"
+    assert group_key in df.columns, f"{group_key} not in {df.columns}"
+
+    # perform significance test
+    groups = df[group_key].unique()
+
+    ct_cols = [ct for ct in df.columns if ct != group_key]
+    row_sums = df[ct_cols].sum(axis=1)
+    assert np.allclose(row_sums, 1.0, atol=1e-6), (
+        f"Row sums should be close to 1, got max of {row_sums.max()}"
+    )
+
+    group_values = [df[df[group_key] == g][target_ct].values for g in groups]
+
+    stat, p = mannwhitneyu(group_values[0], group_values[1], alternative="two-sided")
+    return p

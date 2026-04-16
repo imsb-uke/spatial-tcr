@@ -7,11 +7,10 @@ import scanpy as sc
 import scipy
 import seaborn as sns
 from sklearn.cluster import DBSCAN
-from spatialtools.spatial import spatial_sample_split
 from statsmodels.sandbox.stats.multicomp import multipletests
 from tqdm.auto import tqdm
 
-from .spatial import annotate_ccs, to_networkx
+from .spatial import annotate_ccs, spatial_sample_split, to_networkx
 from .tcr import get_tcr_genes
 
 

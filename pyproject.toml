@@ -43,7 +43,6 @@ dependencies = [
     "scib>=1.1.7",
     "scib-metrics>=0.5.8",
     "spatialdata>=0.6.1",
-    "spatialtools",
     "squarify>=0.4.4",
     "tqdm>=4.67.1",
 ]
@@ -157,6 +156,3 @@ xfail_strict = true
 addopts = [
   "--import-mode=importlib", # allow using test files with same name
 ]
-
-[tool.uv.sources]
-spatialtools = { path = "/bonn-epyc/projects/dschaub/method-projects/spatialtools", editable = true }

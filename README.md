@@ -35,7 +35,7 @@ After `uv sync`, the package installs CLI commands that execute notebooks with [
 | `uv run tcr-seq-notebooks` | Run the TCR-seq pipeline (`notebooks/tcr-seq-analysis/`, output `.papermill/tcr-seq-analysis/`). |
 | `uv run spatialtcr` | Run the Xenium pipeline, then the TCR-seq pipeline (shared `--kernel`). |
 
-Use `--help` on each command for options (e.g. `--notebook-dir`, `--output-dir`, `--start-at`, `--glob` on the first two).
+Use `--help` on each command for options (e.g. `--notebook-dir`, `--output-dir`, `--start-at` or `--start-index` (mutually exclusive), `--glob` on the first two).
 
 Adapt **raw or external input** paths where notebooks hardcode them (leave `data/**/processed` paths as in the repo unless you intentionally relocate those objects):
 
@@ -44,3 +44,18 @@ Adapt **raw or external input** paths where notebooks hardcode them (leave `data
 - **Reference atlas (classification):** `notebooks/xenium-tcr-analysis/03.1-classify-celltypes.ipynb` — the path to the Lake kidney reference `cellxgene_obj.h5ad` must point to your copy of that file.
 
 Downstream notebooks that only read `data/xenium/processed/*.h5ad` or `data/tcr-seq/processed/*` do not need those raw paths changed.
+
+## Citation
+
+If you use this repository or the associated manuscript, please cite:
+
+```bibtex
+@article{ly2025spatial,
+  title={Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes},
+  author={Ly, Cedric and Schaub, Darius P and Khatri, Robin and Sultana, Zeba and Boxnick, Annika and Song, Zheng and Huber, Tobias and Wiech, Thorsten and Tolosa, Eva and Panzer, Ulf and others},
+  journal={bioRxiv},
+  pages={2025--08},
+  year={2025},
+  publisher={Cold Spring Harbor Laboratory}
+}
+```
