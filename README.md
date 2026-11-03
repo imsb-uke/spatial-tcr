@@ -1,6 +1,6 @@
 # Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes
 
-This repository contains code and analysis notebooks for the manuscript **A spatial in situ hybridization approach to T cell clonotype analysis using T cell receptor variable gene probes**, published in [Cell Reports](https://www.cell.com/cell-reports/fulltext/S2211-1247(26)00561-9). An earlier version is available as a preprint on [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.08.29.673064v1) under the title *Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes*.
+This repository contains code and analysis notebooks for the manuscript **A spatial in situ hybridization approach to T cell clonotype analysis using T cell receptor variable gene probes**, published in [Cell Reports](https://www.cell.com/cell-reports/fulltext/S2211-1247(26)00561-9).
 
 ## Installation
 
