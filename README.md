@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19607985.svg)](https://doi.org/10.5281/zenodo.19607985)
 
-This repository contains code and analysis notebooks for the manuscript **Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes**. The preprint can be found on [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.08.29.673064v1).
+This repository contains code and analysis notebooks for the manuscript **A spatial in situ hybridization approach to T cell clonotype analysis using T cell receptor variable gene probes**, published in [Cell Reports](https://www.cell.com/cell-reports/fulltext/S2211-1247(26)00561-9).
 
 ## Installation
 
@@ -52,12 +52,15 @@ Downstream notebooks that only read `data/xenium/processed/*.h5ad` or `data/tcr-
 If you use this repository or the associated manuscript, please cite:
 
 ```bibtex
-@article{ly2025spatial,
-  title={Spatial Analysis of T Cell Clonality in Autoimmune Kidney Disease Using TRV Probes},
-  author={Ly, Cedric and Schaub, Darius P and Khatri, Robin and Sultana, Zeba and Boxnick, Annika and Song, Zheng and Huber, Tobias and Wiech, Thorsten and Tolosa, Eva and Panzer, Ulf and others},
-  journal={bioRxiv},
-  pages={2025--08},
-  year={2025},
-  publisher={Cold Spring Harbor Laboratory}
+@article{ly2026spatial,
+  title={A spatial in situ hybridization approach to T cell clonotype analysis using T cell receptor variable gene probes},
+  author={Ly, Cedric and Schaub, Darius P and Khatri, Robin and Sultana, Zeba and Boxnick, Annika and Song, Zheng and Hube, Arthur and Huber, Tobias and Wiech, Thorsten and Tolosa, Eva and Panzer, Ulf and Bonn, Stefan and Krebs, Christian and Prinz, Immo},
+  journal={Cell Reports},
+  volume={45},
+  number={6},
+  pages={117483},
+  year={2026},
+  publisher={Elsevier},
+  doi={10.1016/j.celrep.2026.117483}
 }
 ```
